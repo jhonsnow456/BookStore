@@ -24,5 +24,6 @@ router.post('/add-product', (req, res, next) =>{
     res.redirect('/'); // to redirect to the root
 });
 
+
 // export the packages 
 module.exports = router;
