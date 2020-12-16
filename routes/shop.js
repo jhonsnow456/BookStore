@@ -4,7 +4,6 @@ const path = require('path');
 
 
 /** import defined files by me */
-const rootDir = require('../util/path');
 const adminData = require('./admin');
 
 const router = express.Router();
