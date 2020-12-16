@@ -3,10 +3,6 @@ const express = require('express');
 const path = require('path');
 
 
-/** import defined files by me */
-const rootDir = require('../util/path');
-
-
 const router = express.Router();
 
 // created the product-list
