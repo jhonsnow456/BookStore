@@ -16,7 +16,8 @@ const products = [];
 // /admin/add-product => GET request
 router.get('/add-product', (req, res, next)=>{
     // add the form over here 
-    res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
+    // res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
+    res.render('add-product');
 });
 
 /** Display the product entry */
