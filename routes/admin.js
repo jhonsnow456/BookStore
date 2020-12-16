@@ -9,6 +9,8 @@ const rootDir = require('../util/path');
 
 const router = express.Router();
 
+// created the product-list
+const products = [];
 
 /** Adding the product */
 // /admin/add-product => GET request
@@ -20,10 +22,11 @@ router.get('/add-product', (req, res, next)=>{
 /** Display the product entry */
 // /admin/add-product => POST request
 router.post('/add-product', (req, res, next) =>{
-    console.log(req.body);
+    products.push({title: req.body.title})
     res.redirect('/'); // to redirect to the root
 });
 
 
 // export the packages 
-module.exports = router;
+exports.routes = router;
+exports.products = products;

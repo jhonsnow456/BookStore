@@ -12,6 +12,11 @@ const shopRoutes = require('./routes/shop');
 /** create our express app */
 const app = express();
 
+/** set templating engine */
+app.set('view engine', 'pug');
+app.set('views', './views');
+
+
 /** Parsing the code we require a parser to check whether what kind of data is given 
  * to be delt with 
  */
