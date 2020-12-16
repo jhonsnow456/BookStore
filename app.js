@@ -1,4 +1,4 @@
-/** imported our express library */ 
+/** imported our express library + core packages*/ 
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
