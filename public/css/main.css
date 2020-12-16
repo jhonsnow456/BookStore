@@ -11,7 +11,7 @@ main {
 .main-header {
     width: 100%;
     height: 3.5rem;
-    background: linear-gradient(rgb(201, 161, 161), rgb(223, 92, 114), rgb(189, 49, 49));
+    background: linear-gradient(black, #131921, black);
     padding: 0 1.5rem;
 }
 
@@ -35,13 +35,13 @@ main {
 
 .main-header__item a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .main-header__item a:hover,
 .main-header__item a:active,
 .main-header__item a.active {
-    color: #3e00a1;
+    color: #c1b6b6;
 }
 
 .product-form {
