@@ -1,9 +1,14 @@
+/** imported our express library + core packages*/ 
 const express = require('express');
 const path = require('path');
 
+
+/** import defined files by me */
 const rootDir = require('../util/path');
 
+
 const router = express.Router();
+
 
 /** Adding the product */
 // /admin/add-product => GET request
@@ -19,4 +24,5 @@ router.post('/add-product', (req, res, next) =>{
     res.redirect('/'); // to redirect to the root
 });
 
+// export the packages 
 module.exports = router;
