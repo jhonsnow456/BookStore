@@ -3,9 +3,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+/** Add controller function */
+const errorController = require('./controllers/error');
+
 
 /** import defined files by me */
-const adminData = require('./routes/admin');
+const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 
@@ -26,12 +29,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 /** defining the routes */ 
-app.use('/admin', adminData.routes); // adding admin filter
+app.use('/admin', adminRoutes); // adding admin filter
 app.use(shopRoutes);
 
-app.use((req, res, next)=>{
-    res.status(404).render('404', {pageTitle: 'Page Not Found'});
-});
+app.use(errorController.get404);
 
 // create a server 
 app.listen(3000);

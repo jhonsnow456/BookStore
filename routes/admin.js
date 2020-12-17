@@ -1,28 +1,22 @@
 /** imported our express library + core packages*/ 
 const express = require('express');
-const path = require('path');
+
+
+/** Add controller function */
+const productController = require('../controllers/products');
 
 
 const router = express.Router();
 
-// created the product-list
-const products = [];
 
 /** Adding the product */
 // /admin/add-product => GET request
-router.get('/add-product', (req, res, next)=>{
-    // add the form over here 
-    res.render('add-product', { pageTitle: 'Add Product', path: '/admin/add-product' });
-});
+router.get('/add-product', productController.getAddProduct);
 
 /** Display the product entry */
 // /admin/add-product => POST request
-router.post('/add-product', (req, res, next) =>{
-    products.push({title: req.body.title})
-    res.redirect('/'); // to redirect to the root
-});
+router.post('/add-product', productController.postAddProduct);
 
 
 // export the packages 
-exports.routes = router;
-exports.products = products;
+module.exports = router
