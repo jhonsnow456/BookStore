@@ -3,11 +3,7 @@ const path = require('path')
 
 
 // set a global helper function 
-const p = path.join(
-    path.dirname(require.main.filename), 
-    'data', 
-    'products.json'
-);
+const p = path.join(path.dirname(require.main.filename), 'data', 'products.json');
 
 const getProductsFromFile = call_back =>{
     fs.readFile(p, (err, fileContent)=>{
