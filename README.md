@@ -1,2 +1,2 @@
 # BookStore
-It's like a ecommerce website where we can share the books
+It's like an eCommerce website where we can sell the books
