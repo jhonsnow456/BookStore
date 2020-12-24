@@ -6,11 +6,21 @@ const path = require('path');
 /** Add controller function */
 const errorController = require('./controllers/error');
 
+/** import data base package */
+const db = require('./util/database');
 
 /** import defined files by me */
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+/** executing the database query */
+db.execute('SELECT * FROM products')
+    .then(result => {
+        console.log(result[0], result[1]);
+    })
+    .catch(err => {
+        console.log(err);
+    });
 
 /** create our express app */
 const app = express();
