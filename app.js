@@ -10,6 +10,9 @@ const errorController = require('./controllers/error');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+/** import our db */
+const sequelize = require('./util/database')
+
 /** create our express app */
 const app = express();
 
@@ -33,4 +36,12 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 // create a server 
-app.listen(3000);
+sequelize
+    .sync()
+    .then(result=>{
+        console.log(result);
+        app.listen(3000);
+    })
+    .catch(err=>{
+        console.log(err);
+    });
