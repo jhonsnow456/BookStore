@@ -10,6 +10,11 @@ const errorController = require('./controllers/error');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+
+/** add modals */
+const User = require('./models/user');
+const Product = require('./models/product');
+
 /** import our db */
 const sequelize = require('./util/database')
 
@@ -29,19 +34,43 @@ app.use(bodyParser.urlencoded({extended: false}));
 /** Serving static pages */
 app.use(express.static(path.join(__dirname, 'public')));
 
+/** this is a middleware function */
+app.use((req, res, next) => {
+    User.findByPk(1)
+      .then(user => {
+        req.user = user;
+        next();
+      })
+      .catch(err => console.log(err));
+});
+
 /** defining the routes */ 
 app.use('/admin', adminRoutes); // adding admin filter
 app.use(shopRoutes);
 
 app.use(errorController.get404);
 
+Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
+User.hasMany(Product);
+
 // create a server 
 sequelize
-    .sync()
-    .then(result=>{
-        // console.log(result);
-        app.listen(3000);
-    })
-    .catch(err=>{
-        console.log(err);
-    });
+  // .sync({ force: true })
+  .sync()
+  .then(result => {
+    return User.findByPk(1);
+    // console.log(result);
+  })
+  .then(user => {
+    if (!user) {
+      return User.create({ name: 'Max', email: 'test@test.com' });
+    }
+    return user;
+  })
+  .then(user => {
+    // console.log(user);
+    app.listen(3000);
+  })
+  .catch(err => {
+    console.log(err);
+  });
