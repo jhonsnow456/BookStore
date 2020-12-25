@@ -9,4 +9,4 @@ Desktop view
 
 Smart Phone view
 ------------------ 
-![phone-view](https://github.com/jhonsnow456/sreenshot/blob/main/BookStoreScreenShot/android-view.jpg) | ![side-menu](https://github.com/jhonsnow456/sreenshot/blob/main/BookStoreScreenShot/side-bar.jpg)
+![working](https://github.com/jhonsnow456/sreenshot/blob/main/BookStoreScreenShot/working.gif)
