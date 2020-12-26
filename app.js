@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', adminRoutes); // adding admin filter
 app.use(shopRoutes);
 
+//handling the error controller
 app.use(errorController.get404);
 
 // create a server 
