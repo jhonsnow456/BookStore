@@ -35,4 +35,6 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 // create a server 
-app.listen(3000);
+app.listen(process.env.PORT || 3000, function(){
+	console.log("Express server on port %d in %s mode", this.address().port, app.settings.env);
+});
