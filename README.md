@@ -1,10 +1,6 @@
 # BookStore
 It's like an eCommerce website where we can sell the books
 
-## Link to website:
--------------------
-![Link to my website](https://new-book-store.herokuapp.com/)
-
 ## screenshot
 
 Desktop view
