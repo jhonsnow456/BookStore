@@ -9,10 +9,11 @@ It's a concept of an ecommerce webstore for books. The project is build in serve
 ## Screenshot
 
 ### Desktop view
-![BookStore](https://github.com/jhonsnow456/sreenshot/blob/main/BookStoreScreenShot/BookStore.png)
+![image](https://user-images.githubusercontent.com/54764701/153749345-86251d19-a039-4955-9ba3-e6d24cf45ad4.png)
 
 ### Smart Phone view 
-![working](https://github.com/jhonsnow456/sreenshot/blob/main/BookStoreScreenShot/working.gif)
+![image](https://user-images.githubusercontent.com/54764701/153749388-39beaf89-a6b3-46b5-bc26-bc168f7ce692.png)
+
 
 ## Project Dependency:
 - body-parser
