@@ -5,6 +5,7 @@ const path = require("path");
 
 /** Add controller function */
 const errorController = require("./controllers/error");
+const sequelize = require("./utils/database");
 
 /** import defined files by me */
 const adminRoutes = require("./routes/admin");
@@ -31,11 +32,16 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-// create a server
-app.listen(process.env.PORT || 3000, function () {
-  console.log(
-    "Express server on port %d in %s mode",
-    this.address().port,
-    app.settings.env
-  );
-});
+sequelize
+  .sync()
+  .then((result) => {
+    // create a server
+    app.listen(process.env.PORT || 3000, function () {
+      console.log(
+        "Express server on port %d in %s mode",
+        this.address().port,
+        app.settings.env
+      );
+    });
+  })
+  .catch((err) => console.log(err));
