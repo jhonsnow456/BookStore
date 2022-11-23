@@ -7,6 +7,10 @@ const path = require("path");
 const errorController = require("./controllers/error");
 const sequelize = require("./utils/database");
 
+/** Import Modules to build relation */
+const Product = require("./models/product");
+const User = require("./models/user");
+
 /** import defined files by me */
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
@@ -26,15 +30,40 @@ app.use(bodyParser.urlencoded({ extended: false }));
 /** Serving static pages */
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use((req, res, next) => {
+  User.findByPk(1)
+    .then((user) => {
+      req.user = user;
+      next();
+    })
+    .catch((err) => console.log(err));
+});
+
 /** defining the routes */
 app.use("/admin", adminRoutes); // adding admin filter
 app.use(shopRoutes);
 
 app.use(errorController.get404);
 
+Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
+User.hasMany(Product);
+
 sequelize
+  // .sync({ force: true })
   .sync()
   .then((result) => {
+    return User.findByPk(1);
+  })
+  .then((user) => {
+    if (!user) {
+      return User.create({ name: "Aman", email: "test@test.com" });
+    }
+
+    return user;
+  })
+  .then((user) => {
+    console.log(user);
+
     // create a server
     app.listen(process.env.PORT || 3000, function () {
       console.log(
