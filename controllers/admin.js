@@ -1,10 +1,13 @@
 const Product = require("../models/product");
 
 exports.getAddProduct = (req, res, next) => {
+  const isLoggedIn = req.get("Cookie").split(":")[1];
+
   res.render("admin/edit-product", {
     pageTitle: "Add Product",
     path: "/admin/add-product",
     editing: false,
+    isAuthenticated: isLoggedIn,
   });
 };
 
@@ -42,7 +45,9 @@ exports.getEditProduct = (req, res, next) => {
     .getProducts({ where: { id: prodId } })
     // Product.findByPk(prodId)
     .then((products) => {
+      const isLoggedIn = req.get("Cookie").split(":")[1];
       const product = products[0];
+
       if (!product) {
         return res.redirect("/");
       }
@@ -51,6 +56,7 @@ exports.getEditProduct = (req, res, next) => {
         path: "/admin/edit-product",
         editing: editMode,
         product: product,
+        isAuthenticated: isLoggedIn,
       });
     })
     .catch((err) => console.log(err));
@@ -84,10 +90,13 @@ exports.getProducts = (req, res, next) => {
     .getProducts()
     // Product.findAll()
     .then((products) => {
+      const isLoggedIn = req.get("Cookie").split(":")[1];
+
       res.render("admin/products", {
         prods: products,
         pageTitle: "Admin Products",
         path: "/admin/products",
+        isAuthenticated: isLoggedIn,
       });
     })
     .catch((err) => console.log(err));

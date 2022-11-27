@@ -16,9 +16,10 @@ const CartItem = require("./models/cart-item");
 const Order = require("./models/order");
 const OrderItem = require("./models/oder-item");
 
-/** import defined files by me */
+/** import routes */
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const authRoutes = require("./routes/auth");
 
 /** create our express app */
 const app = express();
@@ -44,9 +45,10 @@ app.use((req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-/** defining the routes */
+/** use routes as middleware */
 app.use("/admin", adminRoutes); // adding admin filter
 app.use(shopRoutes);
+app.use(authRoutes);
 
 app.use(errorController.get404);
 
