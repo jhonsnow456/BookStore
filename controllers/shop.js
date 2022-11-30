@@ -153,18 +153,18 @@ exports.postOrder = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-exports.getOrders = (req, res, next) => {
-  req.user
-    .getOrders({ include: ["products"] })
-    .then((orders) => {
-      const isLoggedIn = req.get("Cookie").split(":")[1];
+exports.getOrders = async (req, res, next) => {
+  try {
+    const orders = await req.user.getOrders({ include: ["products"] });
+    const isLoggedIn = req.get("Cookie").split(":")[1];
 
-      res.render("shop/orders", {
-        path: "/orders",
-        pageTitle: "Your Orders",
-        orders: orders,
-        isAuthenticated: isLoggedIn,
-      });
-    })
-    .catch((err) => console.log(err));
+    res.render("shop/orders", {
+      path: "/orders",
+      pageTitle: "Your Orders",
+      orders: orders,
+      isAuthenticated: isLoggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
